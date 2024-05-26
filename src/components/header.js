@@ -3,7 +3,7 @@ import { UserContext } from "../context/userContext";
 
 const Header = () => {
   const [user, setUser] = useContext(UserContext);
-
+  console.log({ user });
   return (
     <header
       style={{
@@ -12,7 +12,7 @@ const Header = () => {
         justifyContent: "space-between",
       }}
     >
-      <p>Hello {"User"}</p>
+      <p>Hello {user.firstName}</p>
       <button
         onClick={() => {
           setUser("");
