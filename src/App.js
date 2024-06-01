@@ -11,11 +11,6 @@ import { UserContext } from "./context/userContext";
 function App() {
   const [user, setUser] = useContext(UserContext);
 
-  useEffect(() => {
-    const parsed_user = JSON.parse(localStorage.getItem("user"));
-    setUser(parsed_user);
-  }, []);
-
   return (
     <div>
       <Routes>

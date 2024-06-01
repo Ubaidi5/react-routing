@@ -5,7 +5,7 @@ import { useAPI, APIS } from "../apis/config";
 import { UserContext } from "../context/userContext";
 
 const Login = (props) => {
-  // const [_, setUser] = useContext(UserContext);
+  const [_, setUser] = useContext(UserContext);
 
   const [login, setLogin] = useState({ email: "", password: "" });
 
@@ -23,9 +23,7 @@ const Login = (props) => {
         username: login.email,
         password: login.password,
       });
-      // setUser(data);
-
-      localStorage.setItem("user", JSON.stringify(data));
+      setUser(data);
     } catch (err) {
       console.log("Error in login page", err);
     }
