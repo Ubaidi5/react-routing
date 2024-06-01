@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
 import { useAPI, APIS } from "../apis/config";
+import { UserContext } from "../context/userContext";
 
 const Login = (props) => {
-  const { setIsLoggedIn } = props;
+  // const [_, setUser] = useContext(UserContext);
 
   const [login, setLogin] = useState({ email: "", password: "" });
 
@@ -22,8 +23,8 @@ const Login = (props) => {
         username: login.email,
         password: login.password,
       });
+      // setUser(data);
 
-      setIsLoggedIn(true);
       localStorage.setItem("user", JSON.stringify(data));
     } catch (err) {
       console.log("Error in login page", err);

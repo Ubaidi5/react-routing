@@ -4,12 +4,12 @@ import Login from "./Views/Login";
 import { Routes, Route } from "react-router-dom";
 import Register from "./Views/Register";
 import Dashboard from "./Views/Dashboard";
-import { useEffect, useState } from "react";
-import Header from "./components/header";
+import { useContext, useEffect } from "react";
+
 import { UserContext } from "./context/userContext";
 
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useContext(UserContext);
 
   useEffect(() => {
     const parsed_user = JSON.parse(localStorage.getItem("user"));
@@ -18,20 +18,18 @@ function App() {
 
   return (
     <div>
-      <UserContext.Provider value={[user, setUser]}>
-        <Routes>
-          {user.id ? (
-            <Route path="/">
-              <Route path="/" index element={<Dashboard />} />
-            </Route>
-          ) : (
-            <>
-              <Route path="/" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-            </>
-          )}
-        </Routes>
-      </UserContext.Provider>
+      <Routes>
+        {user?.id ? (
+          <Route path="/">
+            <Route path="/" index element={<Dashboard />} />
+          </Route>
+        ) : (
+          <>
+            <Route path="/" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </>
+        )}
+      </Routes>
     </div>
   );
 }
